@@ -37,22 +37,26 @@ def main():
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # -------------------------------------------------------------------------
+    button['command'] = lambda: print('Hello!')
+
 
     # -------------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # DONE: 6. After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
     #        on the Console if the current string in the Entry box
     #        is the string 'ok', but print "Goodbye" otherwise.
     # -------------------------------------------------------------------------
-    my_entry_box = ttk.Entry(frame1)
-    my_entry_box.grid()
+    entry_box1 = ttk.Entry(frame1)
+    entry_box1.grid()
 
-    button['command'] = lambda: button_response(my_entry_box)
+    button2 = ttk.Button(frame1, text='Greeting')
+    button2.grid()
+    button2['command'] = lambda: button_response(entry_box1)
 
     # -------------------------------------------------------------------------
-    # TODO: 7.
+    # DONE: 7.
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
@@ -74,9 +78,15 @@ def main():
     #      s = entry_box.get()
     #      n = int(s)
     ####################################################################
+    entry_box2 = ttk.Entry(frame1)
+    entry_box2.grid()
+    button3 = ttk.Button(frame1, text='Print')
+    button3.grid()
+    button3['command'] = lambda: string_printer(entry_box1, entry_box2)
+
 
     # -------------------------------------------------------------------------
-    # TODO: 8. As time permits, do other interesting GUI things!
+    # DONE: 8. As time permits, do other interesting GUI things!
     # -------------------------------------------------------------------------
 
     root.mainloop()
@@ -88,6 +98,12 @@ def button_response(my_entry_box):
         print('Hello!')
     else:
         print('Goodbye')
+
+
+def string_printer(entry_box, entry_box2):
+    string = entry_box.get()
+    number = int(entry_box2.get())
+    print(string*number)
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
